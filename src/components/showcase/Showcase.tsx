@@ -10,7 +10,7 @@ import { Eyebrow } from "@/components/ui/Typography";
 import { gallery, labItems, languageColors, profile } from "@/lib/content";
 import { cx, pillInteractive } from "@/lib/styles";
 
-/** Dark showcase: side-project "lab" cards + a masonry gallery of Vishwesh's photography. */
+
 export function Showcase() {
   const ref = useRef<HTMLElement>(null);
 

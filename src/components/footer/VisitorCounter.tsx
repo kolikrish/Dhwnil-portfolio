@@ -5,8 +5,8 @@ import { DoodleSparkle } from "@/components/ui/Doodles";
 import { motion } from "framer-motion";
 
 const BASE_VISITOR_COUNT = 108;
-const SESSION_STORAGE_KEY = "vishwesh_portfolio_visited";
-const LOCAL_STORAGE_KEY = "vishwesh_portfolio_visitor_count";
+const SESSION_STORAGE_KEY = "dhwanil_portfolio_visited";
+const LOCAL_STORAGE_KEY = "dhwanil_portfolio_visitor_count";
 
 function getOrdinal(n: number): string {
   const s = ["th", "st", "nd", "rd"];

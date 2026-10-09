@@ -67,7 +67,7 @@ function WeatherIcon({ kind, isDay }: { kind: WeatherKind; isDay: boolean }) {
   );
 }
 
-/** Live weather for Vishwesh's city fetched directly from Open-Meteo. */
+/** Live weather for Dhwanil's city (Indore) fetched directly from Open-Meteo. */
 export function WeatherChip({ className }: { className?: string }) {
   const [data, setData] = useState<WeatherData | null>(null);
 

@@ -5,21 +5,21 @@ import { useEffect, useRef } from "react";
 import { Scribble } from "@/components/ui/Doodles";
 import { RocketSketch, Starfield, WireframeSketch } from "./Scenery";
 
-/* Philosophy: Explore → Simplify → Scale & Empower. */
+/* Philosophy: Explore & Build → Speak & Educate → Rally & Elevate Community. */
 const COPY = {
-  s1Eyebrow: "01 — explore",
+  s1Eyebrow: "01 — explore & create",
   s1Lead: "First, I",
   s1Word: "explore",
-  s1Tail: "the core problem space.",
-  s1Script: "before jumping into solutions.",
-  s1Sub: "User workflows, security boundaries, ecosystem friction — digging into how things truly work before architecting products or automation.",
-  s2Eyebrow: "02 — simplify",
-  s2Title: "Then I strip the noise.",
-  s2Script: "knowing what to leave out.",
-  s2Sub: "Great product design is often about intentional subtraction. Clear workflows, responsible security defaults, and intuitive user experiences.",
-  s3Eyebrow: "03 — ship & empower",
-  s3Script: "(and grow in the open)",
-  s3Sub: "Engineering-led product growth, backed by continuous testing, practical automation, and sharing insights with the developer community.",
+  s1Tail: "the frontier.",
+  s1Script: "connecting tech, security & human needs.",
+  s1Sub: "Whether dissecting cybersecurity threat vectors, testing AI automations, or designing product workflows — everything starts with hands-on curiosity and building in the open.",
+  s2Eyebrow: "02 — speak & educate",
+  s2Title: "Then I bring it to the stage.",
+  s2Script: "demystifying complex tech for everyone.",
+  s2Sub: "From university auditoriums to hands-on security workshops, I break down OSINT, threat intelligence, and AI into actionable stories that inspire people to learn and question.",
+  s3Eyebrow: "03 — rally the community",
+  s3Script: "(600+ members & counting 🤝)",
+  s3Sub: "Co-leading The Hackers Meetup Indore, mentoring future engineers at SVVV, and growing spaces where developers, hackers, and creators build and learn together.",
 };
 
 /**
@@ -202,7 +202,7 @@ function ScrubbedStory() {
           <motion.div style={{ opacity: s3Opacity, y: s3Y }} className="col-start-1 row-start-1 mb-[16vh] max-w-3xl px-2 sm:mb-[22vh] md:mb-[30vh]">
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted sm:text-[11px] sm:tracking-[0.3em]">{COPY.s3Eyebrow}</p>
             <h2 className="mt-4 text-[clamp(1.75rem,4.8vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-ink sm:mt-6">
-              Build it. <span className="marker">Ship it.</span> Listen. Repeat.
+              Build products. <span className="marker">Elevate community.</span>
             </h2>
             <p className="mt-3 -rotate-2 font-hand text-xl text-accent sm:mt-4 md:text-3xl">{COPY.s3Script}</p>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted sm:mt-5 sm:text-lg">{COPY.s3Sub}</p>
