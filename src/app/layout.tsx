@@ -11,30 +11,43 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 const caveat = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-caveat", display: "swap" });
 const gochi = Gochi_Hand({ subsets: ["latin"], weight: "400", variable: "--font-gochi", display: "swap" });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhwanilbhavsar.vercel.app";
 const description =
-  "Dhwanil Bhavsar — Product manager, cybersecurity enthusiast & community builder from Indore, India. Passionate about AI-powered automation, ethical hacking and visual storytelling through photography. Building products, empowering communities and exploring technology.";
+  "Explore Dhwanil Bhavsar's work in product growth, AI automation, cybersecurity, developer communities, technical writing, and photography in Indore, India.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — `,
+    default: "Dhwanil Bhavsar — Product Growth, Cybersecurity & Photography",
     template: `%s · ${profile.name}`,
   },
   description,
-  keywords: ["Dhwanil Bhavsar", "portfolio", "Developer", "Community Builder", "Photography", "Indore"],
+  keywords: [
+    "Dhwanil Bhavsar",
+    "Product Growth Engineer",
+    "Cybersecurity",
+    "The Hackers Meetup",
+    "Community Builder",
+    "Indore",
+    "Walkover",
+    "viaSocket",
+    "AI Automation",
+    "Technical Writer",
+    "Photography",
+  ],
   authors: [{ name: profile.name, url: profile.githubUrl }],
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: `${profile.name} — Building Products, Exploring Security, Connecting Communities.`,
+    title: `${profile.name} — Product Growth, Cybersecurity & Photography`,
     description,
     siteName: profile.name,
     images: [{ url: profile.portrait.src, width: profile.portrait.width, height: profile.portrait.height, alt: profile.portrait.alt }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     creator: "@dhwanillll",
-    title: `${profile.name} — Portfolio`,
+    title: `${profile.name} — Product Growth, Cybersecurity & Photography`,
     description,
   },
 };
