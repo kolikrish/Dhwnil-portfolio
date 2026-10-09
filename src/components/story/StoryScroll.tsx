@@ -1,0 +1,214 @@
+"use client";
+
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { Scribble } from "@/components/ui/Doodles";
+import { RocketSketch, Starfield, WireframeSketch } from "./Scenery";
+
+/* Philosophy: Explore → Simplify → Scale & Empower. */
+const COPY = {
+  s1Eyebrow: "01 — explore",
+  s1Lead: "First, I",
+  s1Word: "explore",
+  s1Tail: "the core problem space.",
+  s1Script: "before jumping into solutions.",
+  s1Sub: "User workflows, security boundaries, ecosystem friction — digging into how things truly work before architecting products or automation.",
+  s2Eyebrow: "02 — simplify",
+  s2Title: "Then I strip the noise.",
+  s2Script: "knowing what to leave out.",
+  s2Sub: "Great product design is often about intentional subtraction. Clear workflows, responsible security defaults, and intuitive user experiences.",
+  s3Eyebrow: "03 — ship & empower",
+  s3Script: "(and grow in the open)",
+  s3Sub: "Engineering-led product growth, backed by continuous testing, practical automation, and sharing insights with the developer community.",
+};
+
+/**
+ * Scroll story:
+ * Starts at pure white (#ffffff) seamlessly continuous with the About section above it.
+ * As you scroll into the track, the viewport smoothly, imperceptibly darkens into the
+ * star-lit night sky (#0a0a0a), then transitions through dusk (#5a5a5a), and back to white (#ffffff).
+ * Pure uniform background color interpolation on scroll — zero static gradient stripes.
+ * Fully responsive across both mobile UI and desktop viewports.
+ */
+export function StoryScroll() {
+  return (
+    <section aria-label="How I work">
+      <ScrubbedStory />
+    </section>
+  );
+}
+
+/** Piecewise-linear mapper with clamping. */
+function piecewise(input: number[], output: number[]) {
+  const last = input.length - 1;
+  return (v: number) => {
+    if (v <= input[0]) return output[0];
+    if (v >= input[last]) return output[last];
+    let i = 1;
+    while (v > input[i]) i++;
+    const t = (v - input[i - 1]) / (input[i] - input[i - 1]);
+    return output[i - 1] + (output[i] - output[i - 1]) * t;
+  };
+}
+
+/**
+ * Eased gray level: starts at 255 (pure white, matching About above it 100%),
+ * smoothly darkens to 10 (#0a0a0a) as you scroll into the sticky track,
+ * shifts to 90 (#5a5a5a) for stage 2 wireframe, and returns to 255 (#ffffff) for stage 3.
+ */
+const grayLevel = piecewise(
+  [0, 0.04, 0.08, 0.12, 0.16, 0.36, 0.44, 0.52, 0.64, 0.72, 0.80, 1],
+  [255, 250, 205, 65, 10, 10, 50, 90, 90, 175, 255, 255]
+);
+
+const MAP = {
+  background: (v: number) => {
+    const g = Math.round(grayLevel(v));
+    return `rgb(${g}, ${g}, ${g})`;
+  },
+  // Stars fade in as the sky reaches dark, and fade out when entering dusk
+  stars: piecewise([0, 0.09, 0.16, 0.34, 0.42, 1], [0, 0, 1, 1, 0, 0]),
+  // Stage 1 fades in once the background is dark
+  s1Opacity: piecewise([0, 0.11, 0.17, 0.32, 0.38, 1], [0, 0, 1, 1, 0, 0]),
+  s1Scale: piecewise([0.11, 0.17, 0.32, 0.38], [0.95, 1, 1, 0.92]),
+  s1Y: piecewise([0.11, 0.17, 0.32, 0.38], [24, 0, 0, -32]),
+  s1Circle: piecewise([0.16, 0.25], [0, 1]),
+  // Stage 2
+  grid: piecewise([0.38, 0.46, 0.62, 0.70], [0, 1, 1, 0]),
+  s2Opacity: piecewise([0.40, 0.47, 0.60, 0.66], [0, 1, 1, 0]),
+  s2Y: piecewise([0.40, 0.47, 0.60, 0.66], [40, 0, 0, -28]),
+  s2Scale: piecewise([0.40, 0.47, 0.60, 0.66], [0.96, 1, 1, 0.94]),
+  wireframe: piecewise([0.42, 0.62], [0, 1]),
+  // Stage 3
+  s3Opacity: piecewise([0.68, 0.78], [0, 1]),
+  s3Y: piecewise([0.68, 0.78], [28, 0]),
+  rocketDraw: piecewise([0.66, 0.88], [0, 1]),
+  rocketLift: piecewise([0.88, 1], [0, -26]),
+};
+
+const ONE = () => 1;
+const ZERO = () => 0;
+
+/** "wander" with a loose marker circle whose drawing follows scroll progress. */
+function ScrollCircledWord({ children, draw }: { children: string; draw: MotionValue<number> }) {
+  return (
+    <span className="relative inline-block whitespace-nowrap">
+      <span className="relative z-10">{children}</span>
+      <svg
+        viewBox="0 0 200 80"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-[-9%] top-[-14%] h-[128%] w-[118%] overflow-visible text-accent"
+      >
+        <motion.path
+          d="M152 9 C 110 1, 42 4, 17 22 C -4 38, 12 67, 72 74 C 132 80, 197 66, 196 39 C 195 15, 150 5, 96 8 C 72 9, 52 13, 42 17"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={3}
+          strokeLinecap="round"
+          style={{ pathLength: draw, opacity: useTransform(draw, (v) => (v > 0.001 ? 1 : 0)) }}
+        />
+      </svg>
+    </span>
+  );
+}
+
+function ScrubbedStory() {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion() ?? false;
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+
+  const background = useTransform(scrollYProgress, MAP.background);
+  const starsOpacity = useTransform(scrollYProgress, MAP.stars);
+  const gridOpacity = useTransform(scrollYProgress, MAP.grid);
+
+  // Reduced motion keeps the colour/opacity crossfades and drawings, drops scale & parallax.
+  const s1Opacity = useTransform(scrollYProgress, MAP.s1Opacity);
+  const s1Scale = useTransform(scrollYProgress, reduce ? ONE : MAP.s1Scale);
+  const s1Y = useTransform(scrollYProgress, reduce ? ZERO : MAP.s1Y);
+  const s1Circle = useTransform(scrollYProgress, MAP.s1Circle);
+
+  const s2Opacity = useTransform(scrollYProgress, MAP.s2Opacity);
+  const s2Y = useTransform(scrollYProgress, reduce ? ZERO : MAP.s2Y);
+  const s2Scale = useTransform(scrollYProgress, reduce ? ONE : MAP.s2Scale);
+  const wireframe = useTransform(scrollYProgress, MAP.wireframe);
+
+  const s3Opacity = useTransform(scrollYProgress, MAP.s3Opacity);
+  const s3Y = useTransform(scrollYProgress, reduce ? ZERO : MAP.s3Y);
+  const rocketDraw = useTransform(scrollYProgress, MAP.rocketDraw);
+  const rocketLift = useTransform(scrollYProgress, reduce ? ZERO : MAP.rocketLift);
+
+  useMotionValueEvent(background, "change", (latest) => {
+    if (typeof document !== "undefined") {
+      document.body.style.backgroundColor = latest;
+    }
+  });
+
+  useEffect(() => {
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.style.backgroundColor = "";
+      }
+    };
+  }, []);
+
+  return (
+    <div ref={ref} className="relative block h-[350vh]">
+      {/* Nav theme marker: dark while stages 1–2 sit under the navbar */}
+      <div
+        aria-hidden="true"
+        data-nav-theme="dark"
+        className="pointer-events-none absolute inset-x-0"
+        style={{ top: "10%", height: "54%" }}
+      />
+
+      <motion.div style={{ backgroundColor: background }} className="sticky top-0 h-screen h-[100dvh] overflow-hidden">
+        <motion.div style={{ opacity: starsOpacity }} className="absolute inset-0">
+          <Starfield />
+        </motion.div>
+
+        {/* Stage 2 backdrop: dot-grid paper + a wireframe that sketches itself */}
+        <motion.div style={{ opacity: gridOpacity }} className="paper-dots-dark absolute inset-0" aria-hidden="true">
+          <WireframeSketch draw={wireframe} className="absolute left-1/2 top-1/2 w-[min(92vw,980px)] -translate-x-1/2 -translate-y-1/2 text-white/[0.11]" />
+        </motion.div>
+
+        <div className="absolute inset-x-0 bottom-0">
+          <RocketSketch draw={rocketDraw} lift={rocketLift} className="block h-[26vh] md:h-[36vh] w-full" />
+        </div>
+
+        <div className="relative z-10 grid h-full place-items-center px-4 text-center sm:px-6">
+          <motion.div style={{ opacity: s1Opacity, scale: s1Scale, y: s1Y }} className="col-start-1 row-start-1 max-w-4xl px-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/45 sm:text-[11px] sm:tracking-[0.3em]">{COPY.s1Eyebrow}</p>
+            <h2 className="mt-4 text-[clamp(1.9rem,5.5vw,5.75rem)] font-extrabold leading-[1.04] tracking-[-0.035em] text-white sm:mt-6">
+              {COPY.s1Lead} <ScrollCircledWord draw={s1Circle}>{COPY.s1Word}</ScrollCircledWord>
+              <br />
+              {COPY.s1Tail}
+            </h2>
+            <p className="mt-4 -rotate-2 font-hand text-[clamp(1.35rem,2.6vw,2.2rem)] leading-none text-accent sm:mt-6">{COPY.s1Script}</p>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-night-muted sm:mt-6 sm:text-lg">{COPY.s1Sub}</p>
+          </motion.div>
+
+          <motion.div style={{ opacity: s2Opacity, y: s2Y, scale: s2Scale }} className="col-start-1 row-start-1 max-w-4xl px-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/60 sm:text-[11px] sm:tracking-[0.3em]">{COPY.s2Eyebrow}</p>
+            <h2 className="mt-4 text-[clamp(1.9rem,5.5vw,5.5rem)] font-extrabold leading-[1.04] tracking-[-0.035em] text-white sm:mt-6">
+              {COPY.s2Title}
+            </h2>
+            <p className="mt-3 rotate-1 font-script text-[clamp(1.8rem,4vw,3.25rem)] font-bold leading-none text-white sm:mt-5">
+              {COPY.s2Script}
+            </p>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:mt-6 sm:text-lg">{COPY.s2Sub}</p>
+          </motion.div>
+
+          <motion.div style={{ opacity: s3Opacity, y: s3Y }} className="col-start-1 row-start-1 mb-[16vh] max-w-3xl px-2 sm:mb-[22vh] md:mb-[30vh]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted sm:text-[11px] sm:tracking-[0.3em]">{COPY.s3Eyebrow}</p>
+            <h2 className="mt-4 text-[clamp(1.75rem,4.8vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-ink sm:mt-6">
+              Build it. <span className="marker">Ship it.</span> Listen. Repeat.
+            </h2>
+            <p className="mt-3 -rotate-2 font-hand text-xl text-accent sm:mt-4 md:text-3xl">{COPY.s3Script}</p>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted sm:mt-5 sm:text-lg">{COPY.s3Sub}</p>
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
