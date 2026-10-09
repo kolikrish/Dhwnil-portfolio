@@ -17,7 +17,7 @@ export const profile = {
   utcOffset: "UTC+5:30",
   coords: { latitude: 22.7196, longitude: 75.8577 }, // Coordinates for Indore, Madhya Pradesh
   email: "dhwanilb8@gmail.com",
-  websiteUrl: "https://dhwanilbhavsar.vercel.app/",
+  websiteUrl: "https://dhwnil-portfolio.vercel.app/",
   linkedinUrl: "https://www.linkedin.com/in/dhwanilll/",
   mediumUrl: "https://medium.com/@dhwanill",
   twitterUrl: "https://x.com/dhwanillll",
