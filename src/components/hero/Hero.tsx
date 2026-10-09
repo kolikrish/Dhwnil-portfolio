@@ -70,7 +70,15 @@ export function Hero() {
           </motion.p>
 
           <motion.p variants={item} className="mt-5 max-w-xl text-[17px] leading-relaxed text-muted">
-            Product Growth Engineer at <strong>Walkover</strong>, co-lead of <strong>The Hackers Meetup Indore</strong>, and tech writer on Medium. Exploring SaaS growth, AI automation, and responsible cybersecurity.
+            Product Growth Engineer at <strong>Walkover</strong> (building{" "}
+            <a href="https://www.instagram.com/viasocket/" target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline decoration-accent underline-offset-4">
+              viaSocket
+            </a>
+            ), co-lead of <strong>The Hackers Meetup Indore</strong>, and creator of{" "}
+            <a href="https://www.instagram.com/breaking.byte" target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline decoration-accent underline-offset-4">
+              @breaking.byte
+            </a>
+            . Exploring SaaS growth, AI automation, and responsible cybersecurity.
           </motion.p>
 
           <motion.div variants={item} className="relative mt-9 flex flex-wrap items-center gap-3">

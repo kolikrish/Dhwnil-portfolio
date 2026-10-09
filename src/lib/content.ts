@@ -46,13 +46,15 @@ export type SocialKey = "github" | "linkedin" | "x" | "instagram" | "medium" | "
 export type Social = { key: SocialKey; label: string; href: string; external: boolean };
 
 export const socials: Social[] = [
+  { key: "github", label: "GitHub", href: "https://github.com/dhwanill", external: true },
   { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/dhwanilll/", external: true },
   { key: "medium", label: "Medium", href: "https://medium.com/@dhwanill", external: true },
-  { key: "github", label: "GitHub", href: "https://github.com/dhwanill", external: true },
   { key: "x", label: "X / Twitter", href: "https://x.com/dhwanillll", external: true },
+  { key: "instagram", label: "Breaking Byte (@breaking.byte)", href: "https://www.instagram.com/breaking.byte", external: true },
+  { key: "instagram", label: "viaSocket (@viasocket)", href: "https://www.instagram.com/viasocket/", external: true },
   { key: "instagram", label: "Photography (@starrry.lens)", href: "https://www.instagram.com/starrry.lens/?hl=hi", external: true },
   { key: "sessionize", label: "Sessionize", href: "https://sessionize.com/dhwanil-bhavsar", external: true },
-  { key: "email", label: "Email", href: "#contact", external: false },
+  { key: "email", label: "Email (dhwanilb8@gmail.com)", href: "mailto:dhwanilb8@gmail.com", external: true },
 ];
 
 export const navLinks = [
@@ -200,9 +202,31 @@ export type CommunityRole = {
   stats?: string;
   description: string;
   tags: string[];
+  link?: string;
+  linkText?: string;
 };
 
 export const communityRoles: CommunityRole[] = [
+  {
+    name: "Breaking Byte",
+    role: "Creator & Security Learning Community",
+    stats: "@breaking.byte",
+    description:
+      "Building Breaking Byte — an active cybersecurity and technology learning space breaking down real-world vulnerabilities, ethical hacking fundamentals, and OSINT techniques into byte-sized visual guides.",
+    tags: ["Cybersecurity", "Ethical Hacking", "OSINT", "Community"],
+    link: "https://www.instagram.com/breaking.byte",
+    linkText: "instagram.com/breaking.byte",
+  },
+  {
+    name: "viaSocket Community",
+    role: "Product Growth & Automation Ecosystem",
+    stats: "@viasocket",
+    description:
+      "Growing the viaSocket ecosystem by Walkover — championing workflow automation, AI agents, and frictionless SaaS integrations connecting tools and developers.",
+    tags: ["viaSocket", "Walkover", "Workflow Automation", "AI Agents"],
+    link: "https://www.instagram.com/viasocket/",
+    linkText: "instagram.com/viasocket",
+  },
   {
     name: "The Hackers Meetup — Indore Chapter",
     role: "Chapter Co-Lead & Co-Host",
@@ -213,7 +237,7 @@ export const communityRoles: CommunityRole[] = [
   },
   {
     name: "Abhyudaya Coding Club",
-    role: "Technical Mentor",
+    role: "Mentor and Administravtive Secretary",
     stats: "SVVV Campus",
     description:
       "Mentoring aspiring developers through software design patterns, architectural fundamentals, and real-world project challenges.",

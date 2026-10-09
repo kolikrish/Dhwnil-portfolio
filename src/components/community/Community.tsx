@@ -52,15 +52,27 @@ export function Community() {
                   <p className="mt-3 text-[14.5px] leading-relaxed text-muted">{role.description}</p>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-1.5 pt-4 border-t border-black/[0.05]">
-                  {role.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-white px-2.5 py-0.5 font-mono text-[10.5px] text-ink/70 ring-1 ring-black/[0.06]"
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-black/[0.05]">
+                  <div className="flex flex-wrap gap-1.5">
+                    {role.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-white px-2.5 py-0.5 font-mono text-[10.5px] text-ink/70 ring-1 ring-black/[0.06]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  {role.link && (
+                    <a
+                      href={role.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-mono text-xs font-semibold text-accent hover:underline ml-auto"
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      {role.linkText ?? "View Community"} <ArrowUpRightIcon className="size-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </Reveal>
