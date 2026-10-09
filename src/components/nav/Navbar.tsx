@@ -201,7 +201,7 @@ function MobileMenu({ active, onClose }: { active: string | null; onClose: () =>
           {socials
             .filter((social) => social.external)
             .map((social) => (
-              <li key={social.key}>
+              <li key={social.id}>
                 <a
                   href={social.href}
                   target="_blank"

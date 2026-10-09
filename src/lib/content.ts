@@ -49,18 +49,18 @@ export const profile = {
 } as const;
 
 export type SocialKey = "github" | "linkedin" | "x" | "instagram" | "medium" | "sessionize" | "email";
-export type Social = { key: SocialKey; label: string; href: string; external: boolean };
+export type Social = { id: string; key: SocialKey; label: string; href: string; external: boolean };
 
 export const socials: Social[] = [
-  { key: "github", label: "GitHub", href: "https://github.com/dhwanill", external: true },
-  { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/dhwanilll/", external: true },
-  { key: "medium", label: "Medium", href: "https://medium.com/@dhwanill", external: true },
-  { key: "x", label: "X / Twitter", href: "https://x.com/dhwanillll", external: true },
-  { key: "instagram", label: "Breaking Byte (@breaking.byte)", href: "https://www.instagram.com/breaking.byte", external: true },
-  { key: "instagram", label: "viaSocket (@viasocket)", href: "https://www.instagram.com/viasocket/", external: true },
-  { key: "instagram", label: "Photography (@starrry.lens)", href: "https://www.instagram.com/starrry.lens/?hl=hi", external: true },
-  { key: "sessionize", label: "Sessionize", href: "https://sessionize.com/dhwanil-bhavsar", external: true },
-  { key: "email", label: "Email (dhwanilb8@gmail.com)", href: "mailto:dhwanilb8@gmail.com", external: true },
+  { id: "github", key: "github", label: "GitHub", href: "https://github.com/dhwanill", external: true },
+  { id: "linkedin", key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/dhwanilll/", external: true },
+  { id: "medium", key: "medium", label: "Medium", href: "https://medium.com/@dhwanill", external: true },
+  { id: "x", key: "x", label: "X / Twitter", href: "https://x.com/dhwanillll", external: true },
+  { id: "instagram-breakingbyte", key: "instagram", label: "Breaking Byte (@breaking.byte)", href: "https://www.instagram.com/breaking.byte", external: true },
+  { id: "instagram-viasocket", key: "instagram", label: "viaSocket (@viasocket)", href: "https://www.instagram.com/viasocket/", external: true },
+  { id: "instagram-photography", key: "instagram", label: "Photography (@starrry.lens)", href: "https://www.instagram.com/starrry.lens/?hl=hi", external: true },
+  { id: "sessionize", key: "sessionize", label: "Sessionize", href: "https://sessionize.com/dhwanil-bhavsar", external: true },
+  { id: "email", key: "email", label: "Email (dhwanilb8@gmail.com)", href: "mailto:dhwanilb8@gmail.com", external: true },
 ];
 
 export const navLinks = [
@@ -778,40 +778,6 @@ export const projects: Project[] = [
         { kind: "out", text: "shader: atmospheric_fog.gdshader compiled successfully" },
         { kind: "accent", text: "audio: 3D spatial bus connected to ReverbZone_AbandonedMill" },
         { kind: "dim", text: "scene tree: 48 spatial entities verified" },
-      ],
-    },
-  },
-  {
-    slug: "work-logging-agent",
-    title: "Work Logging Agent",
-    tagline: "Internal AI agent for automated daily task capture and team work logging.",
-    dates: "2025 — 2026",
-    description:
-      "An automated AI agent deployed on the 50Agents platform that synthesizes daily work updates, extracts key deliverables, and synchronizes task boards automatically, removing friction from product team status reporting.",
-    stack: ["50Agents", "viaSocket", "AI Agents", "Workflow Automation", "Webhooks", "JSON Schema"],
-    domain: "agents.50agents.com",
-    live: "https://dhwanilbhavsar.vercel.app/",
-    repo: "https://github.com/dhwanill/work-logging-agent",
-    logo: { monogram: "WA" },
-    badges: [
-      { label: "AI Agents", tone: "featured" },
-      { label: "viaSocket / 50Agents", tone: "achievement" },
-    ],
-    outcomes: [
-      "Eliminates repetitive manual status logging across cross-functional product squads",
-      "Parses freeform conversational text into structured task logs with deliverables and blockers",
-      "Hooks seamlessly into viaSocket workflows to trigger downstream notifications and dashboard syncs",
-    ],
-    underTheHood:
-      "Daily engineer inputs are parsed by an extraction agent that separates completed deliverables from in-progress blockers, validates schema consistency, and dispatches authenticated webhook payloads.",
-    terminal: {
-      title: "50agents/work-logger/run.json",
-      lines: [
-        { kind: "cmd", text: "viasocket trigger --flow 'daily-work-logger'" },
-        { kind: "out", text: "[AGENT] Incoming update: 'Shipped viaSocket OAuth fix and tested webhook retry'" },
-        { kind: "accent", text: "[PARSED] Deliverable: 'viaSocket OAuth fix shipped' | Status: Completed" },
-        { kind: "out", text: "[SYNC] Task board updated · Slack summary dispatched via webhook" },
-        { kind: "dim", text: "Workflow completed in 312ms · 0 errors" },
       ],
     },
   },

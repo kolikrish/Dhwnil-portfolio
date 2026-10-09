@@ -91,7 +91,7 @@ export function Showcase() {
           </div>
         </Reveal>
 
-        <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {/* <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {labItems.map((item, i) => (
             <Reveal as="li" key={item.repo} delay={(i % 3) * 0.06}>
               <div className="flex h-full flex-col rounded-[16px] border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06]">
@@ -143,7 +143,7 @@ export function Showcase() {
               </span>
             </a>
           </Reveal>
-        </ul>
+        </ul> */}
 
         <div id="photography" className="mt-28">
           <Reveal className="relative">

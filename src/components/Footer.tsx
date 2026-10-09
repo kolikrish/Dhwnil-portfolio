@@ -21,7 +21,7 @@ export function Footer() {
 
         <ul className="flex flex-wrap justify-center gap-2.5" aria-label="Social links">
           {socials.map((social) => (
-            <li key={social.key}>
+            <li key={social.id}>
               <a
                 href={social.href}
                 {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
