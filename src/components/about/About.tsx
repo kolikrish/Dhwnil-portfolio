@@ -11,7 +11,6 @@ import { aboutStory, aboutTldr, skills, timeline } from "@/lib/content";
 import { cx } from "@/lib/styles";
 import { TechLogo } from "@/components/ui/TechLogos";
 import { PolaroidStack } from "./PolaroidStack";
-import { RetroPrinter } from "./RetroPrinter";
 
 const TABS = [
   { id: "story", label: "My story" },
@@ -142,7 +141,6 @@ export function About() {
         </Reveal>
 
         <PolaroidStack />
-        <RetroPrinter />
       </div>
     </section>
   );
