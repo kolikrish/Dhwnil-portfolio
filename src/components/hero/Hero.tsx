@@ -4,7 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CurlyArrow, DoodleSparkle, DoodleStar, HandNote, QuickArrow, Scribble, Squiggle, Tape } from "@/components/ui/Doodles";
-import { greetings, profile, projects } from "@/lib/content";
+import { greetings, profile } from "@/lib/content";
 import { btnPrimary, btnSecondary } from "@/lib/styles";
 import { SketchingPencil, VisitorPresence } from "./PresenceCursors";
 
@@ -17,30 +17,6 @@ const item: Variants = {
   hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
-
-function logoFor(slug: string) {
-  const project = projects.find((p) => p.slug === slug);
-  if (!project) return null;
-  return { logo: project.logo, href: project.live, title: project.title };
-}
-
-/** A project name link with a small rounded-square logo in front of it. */
-function LogoLink({ slug, label }: { slug: string; label?: string }) {
-  const info = logoFor(slug);
-  if (!info) return null;
-  return (
-    <a href={info.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-baseline gap-1.5 font-semibold text-ink">
-      <span className="relative top-[3px] grid size-5 shrink-0 place-items-center overflow-hidden rounded-[6px] bg-white ring-1 ring-black/10">
-        {"src" in info.logo ? (
-          <Image src={info.logo.src} alt="" width={20} height={20} className="size-full object-contain" />
-        ) : (
-          <span className="grid size-full place-items-center bg-ink font-mono text-[8px] font-bold text-white">{info.logo.monogram}</span>
-        )}
-      </span>
-      <span className="link-underline">{label ?? info.title}</span>
-    </a>
-  );
-}
 
 /** Picks a random greeting after mount (so SSR markup stays deterministic). */
 function useRandomGreeting() {
@@ -94,8 +70,7 @@ export function Hero() {
           </motion.p>
 
           <motion.p variants={item} className="mt-5 max-w-xl text-[17px] leading-relaxed text-muted">
-            Product Growth Engineer at <strong>Walkover</strong>, co-lead of <strong>The Hackers Meetup Indore</strong>, and tech writer on Medium. Currently working on{" "}
-             and exploring workflow automation.{" "}
+            Product Growth Engineer at <strong>Walkover</strong>, co-lead of <strong>The Hackers Meetup Indore</strong>, and tech writer on Medium. Exploring SaaS growth, AI automation, and responsible cybersecurity.
           </motion.p>
 
           <motion.div variants={item} className="relative mt-9 flex flex-wrap items-center gap-3">

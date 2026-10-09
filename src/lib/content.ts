@@ -442,20 +442,6 @@ export const aboutPolaroids: Photo[] = [
   { ...gallery[3], caption: "night streets" },
 ];
 
-export type Printable =
-  | ({ kind: "photo" } & Photo)
-  | { kind: "quote"; text: string; source: string };
-
-export const printables: Printable[] = [
-  { kind: "quote", text: "Every interaction is intentional, every pixel justified.", source: "product philosophy" },
-  { kind: "photo", ...gallery[0], caption: "golden hour contemplation" },
-  { kind: "quote", text: "Simplicity is not the lack of clutter; it is the presence of purpose.", source: "product thinking" },
-  { kind: "photo", ...gallery[1], caption: "heritage architecture" },
-  { kind: "quote", text: "Security isn't a feature you tack on at the end; it's a foundational mindset.", source: "ethical hacking" },
-  { kind: "photo", ...gallery[3], caption: "night streets" },
-  { kind: "quote", text: "Communities grow when knowledge is shared openly without gatekeeping.", source: "the hackers meetup" },
-];
-
 /* ------------------------------------------------------------------ */
 /*  Featured Projects                                                 */
 /* ------------------------------------------------------------------ */
