@@ -1,10 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Light.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Fonts (wired from next/font CSS variables set on <html>)           */
 /* ------------------------------------------------------------------ */
 @theme inline {
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: var(--font-poppins), "Poppins", var(--font-gilroy), "Gilroy", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-gilroy: var(--font-gilroy), "Gilroy", ui-sans-serif, system-ui, sans-serif;
+  --font-poppins: var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-gilroy), "Gilroy", var(--font-sans);
   --font-script: var(--font-caveat), "Segoe Print", cursive;
   --font-hand: var(--font-gochi), var(--font-caveat), "Segoe Print", cursive;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -19,17 +38,17 @@
   --color-mist: #fafafa;
   --color-paper: #fbfaf7;
   --color-chip: #f0f0f0;
-  /* Marker orange — scribbles, doodles, tiny highlights. */
-  --color-accent: #ff6a3d;
-  /* Highlighter yellow — marker swipes behind words. */
-  --color-highlight: #ffe58a;
+  /* Vibrant purple — scribbles, doodles, brand highlights. */
+  --color-accent: #8b5cf6;
+  /* Lavender highlighter — marker swipes behind words and selection. */
+  --color-highlight: #ede9fe;
   --color-night: #0a0a0a;
   --color-night-muted: #a0a0a0;
   --color-dusk: #5a5a5a;
-  --color-achieve: #fef3c7;
-  --color-achieve-ink: #713f12;
-  --color-featured: #dbeafe;
-  --color-featured-ink: #1e3a8a;
+  --color-achieve: #f3e8ff;
+  --color-achieve-ink: #581c87;
+  --color-featured: #ede9fe;
+  --color-featured-ink: #4c1d95;
 
   --shadow-float: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -10px rgb(0 0 0 / 0.14);
   --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.05), 0 18px 38px -14px rgb(0 0 0 / 0.26);
@@ -108,6 +127,11 @@
   body {
     background: #ffffff;
     color: var(--color-ink);
+    font-family: var(--font-poppins), "Poppins", var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-gilroy), "Gilroy", var(--font-heading);
   }
 
   ::selection {

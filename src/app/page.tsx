@@ -2,7 +2,6 @@ import { About } from "@/components/about/About";
 import { Certifications } from "@/components/certifications/Certifications";
 import { Community } from "@/components/community/Community";
 import { Contact } from "@/components/contact/Contact";
-import { EasterEgg } from "@/components/easter/EasterEgg";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/hero/Hero";
 import { Navbar } from "@/components/nav/Navbar";
@@ -35,7 +34,6 @@ export default function HomePage() {
         <Writing />
         <Certifications />
         <Showcase />
-        <EasterEgg />
         <Contact />
       </main>
       <Footer />

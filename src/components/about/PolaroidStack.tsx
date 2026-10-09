@@ -15,14 +15,14 @@ const OFFSETS = ["md:translate-y-3", "md:-translate-y-4", "md:translate-y-6", "m
 const TAPES = [
   { tone: "yellow", className: "left-1/2 -top-3 -translate-x-1/2 -rotate-3" },
   { tone: "blue", className: "-left-5 -top-1 -rotate-[35deg]" },
-  { tone: "orange", className: "left-1/2 -top-3 -translate-x-1/2 rotate-6" },
+  { tone: "purple", className: "left-1/2 -top-3 -translate-x-1/2 rotate-6" },
   { tone: "white", className: "-right-5 -top-1 rotate-[35deg]" },
 ] as const;
 const FOCUS: Record<string, string> = {
-  "/images/photos/easy_trek.jpg": "50% 50%",
-  "/images/photos/arms_wide_open.png": "50% 45%",
-  "/images/photos/puppy.png": "50% 32%",
-  "/images/photos/boat_canoe.jpg": "50% 32%",
+  "/images/Dhwnil2.jpeg": "50% 18%",
+  "/images/events/1.jpg": "50% 50%",
+  "/images/events/4.jpg": "50% 25%",
+  "/images/photography/2.jpg": "50% 50%",
 };
 
 /** A scrapbook strip of taped photos with pen captions. */

@@ -114,7 +114,7 @@ export function Hero() {
 
           <figure className="group relative rotate-[2.5deg] rounded-[10px] bg-white p-2.5 shadow-photo ring-1 ring-black/[0.05] transition-[rotate,translate] duration-500 ease-out-soft hover:-translate-y-1 hover:rotate-[1deg]">
             <Tape className="-left-5 -top-2 z-10 -rotate-[28deg]" tone="yellow" />
-            <Tape className="-right-6 -top-1 z-10 rotate-[32deg]" tone="orange" />
+            <Tape className="-right-6 -top-1 z-10 rotate-[32deg]" tone="purple" />
             <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-neutral-900">
               <Image
                 src={profile.portrait.src}

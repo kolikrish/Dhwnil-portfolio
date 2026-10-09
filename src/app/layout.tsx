@@ -1,11 +1,23 @@
+import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
-import { Caveat, Geist, Geist_Mono, Gochi_Hand } from "next/font/google";
+import { Caveat, Geist_Mono, Gochi_Hand } from "next/font/google";
 import type { ReactNode } from "react";
 import { MotionProvider } from "@/components/MotionProvider";
 import { profile } from "@/lib/content";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const gilroy = localFont({
+  src: "../../public/fonts/Gilroy-Light.ttf",
+  variable: "--font-gilroy",
+  display: "swap",
+});
+
+const poppins = localFont({
+  src: "../../public/fonts/Poppins-Light.ttf",
+  variable: "--font-poppins",
+  display: "swap",
+});
+
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 // Two handwriting faces: Caveat for flowing script/captions, Gochi Hand for scrawled margin notes.
 const caveat = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-caveat", display: "swap" });
@@ -62,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} ${caveat.variable} ${gochi.variable}`}
+      className={`${gilroy.variable} ${poppins.variable} ${geistMono.variable} ${caveat.variable} ${gochi.variable}`}
     >
       <body className="bg-white font-sans text-ink antialiased">
         <a

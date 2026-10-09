@@ -174,7 +174,7 @@ export function Showcase() {
                 delay={(i % 3) * 0.06}
                 className="group relative mb-3 break-inside-avoid overflow-hidden rounded-[12px] bg-white/5"
               >
-                {i % 3 === 1 && <Tape tone={i % 2 ? "yellow" : "orange"} className="left-1/2 top-1 z-10 -translate-x-1/2 -rotate-2 opacity-90" />}
+                {i % 3 === 1 && <Tape tone={i % 2 ? "yellow" : "purple"} className="left-1/2 top-1 z-10 -translate-x-1/2 -rotate-2 opacity-90" />}
                 <Image
                   src={photo.src}
                   alt={photo.alt}

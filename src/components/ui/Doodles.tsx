@@ -201,9 +201,10 @@ export function Scribble({
 /* ------------------------------------------------------------------ */
 
 const TAPE_TONES = {
-  yellow: "bg-[#ffe58a]/75",
-  orange: "bg-[#ff9a6b]/60",
-  blue: "bg-[#bcd7ff]/70",
+  yellow: "bg-[#ede9fe]/80",
+  purple: "bg-[#c084fc]/55",
+  orange: "bg-[#d8b4fe]/60",
+  blue: "bg-[#ddd6fe]/70",
   white: "bg-white/70",
 } as const;
 

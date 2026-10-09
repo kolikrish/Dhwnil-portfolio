@@ -106,9 +106,9 @@ export function SketchingPencil({ name }: { name: string }) {
           <path d="M22 4 L28 10 L10 28 L3 29 L4 22 Z" fill="#ffd166" stroke="#111" strokeWidth="1.6" strokeLinejoin="round" />
           <path d="M4 22 L10 28" stroke="#111" strokeWidth="1.6" />
           <path d="M3 29 L4.8 24.6 L7.4 27.2 Z" fill="#111" />
-          <path d="M22 4 L28 10 L30 8 C 31 7, 31 5.5, 30 4.5 L27.5 2 C 26.5 1, 25 1, 24 2 Z" fill="#ff6a3d" stroke="#111" strokeWidth="1.6" strokeLinejoin="round" />
+          <path d="M22 4 L28 10 L30 8 C 31 7, 31 5.5, 30 4.5 L27.5 2 C 26.5 1, 25 1, 24 2 Z" fill="#8b5cf6" stroke="#111" strokeWidth="1.6" strokeLinejoin="round" />
         </svg>
-        <span className="-ml-1 -mt-4 whitespace-nowrap rounded-full bg-accent px-2.5 py-0.5 text-xs font-semibold text-night shadow-float">
+        <span className="-ml-1 -mt-4 whitespace-nowrap rounded-full bg-accent px-2.5 py-0.5 text-xs font-semibold text-white shadow-float">
           {name} is doodling…
         </span>
       </div>
